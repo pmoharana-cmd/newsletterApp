@@ -7,6 +7,8 @@ import client from "@mailchimp/mailchimp_marketing";
 // Intialize express app
 const app = express();
 
+console.log(process.env.API_KEY, process.env.SERVER_LOC, process.env.LIST_ID);
+
 // Set config for MailChimp API using env variables
 client.setConfig({
   // variables set in Cyclic dashboard
