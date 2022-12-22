@@ -6,8 +6,8 @@ import client from "@mailchimp/mailchimp_marketing";
 
 const app = express();
 client.setConfig({
-  apiKey: "992956d40e020c642c53534f7a533e11-us11",
-  server: "us11",
+  apiKey: process.env.API_KEY,
+  server: process.env.SERVER_LOC,
 });
 
 app.use(express.static("public"));
@@ -37,7 +37,10 @@ app.post("/", (req, res) => {
 
   const run = async () => {
     try {
-      const response = await client.lists.addListMember("cfceefb58a", data);
+      const response = await client.lists.addListMember(
+        process.env.LIST_ID,
+        data
+      );
       res.sendFile(path.join(__dirname, "success.html"));
     } catch (e) {
       res.sendFile(path.join(__dirname, "failure.html"));
@@ -54,12 +57,6 @@ app.post("/failure", (req, res) => {
 
 // Start Up Server
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("Server has been started on port 3000.");
 });
-
-// API Key
-// 992956d40e020c642c53534f7a533e11-us11
-
-// list ID
-// cfceefb58a
