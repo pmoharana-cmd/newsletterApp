@@ -53,7 +53,7 @@ app.post("/", (req, res) => {
       );
       res.sendFile(path.join(__dirname, "success.html"));
     } catch (e) {
-      console.log(e);
+      console.log(response);
       res.sendFile(path.join(__dirname, "failure.html"));
     }
   };
