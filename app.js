@@ -46,11 +46,9 @@ app.post("/", (req, res) => {
 
   const run = async () => {
     // Loop is used to determine success or failure
+    var response;
     try {
-      const response = await client.lists.addListMember(
-        process.env.LIST_ID,
-        data
-      );
+      response = await client.lists.addListMember(process.env.LIST_ID, data);
       res.sendFile(path.join(__dirname, "success.html"));
     } catch (e) {
       console.log(response);
