@@ -7,7 +7,12 @@ import client from "@mailchimp/mailchimp_marketing";
 // Intialize express app
 const app = express();
 
-console.log(process.env.API_KEY, process.env.SERVER_LOC, process.env.LIST_ID);
+// Log environment variables
+console.log(
+  typeof process.env.API_KEY,
+  typeof process.env.SERVER_LOC,
+  typeof process.env.LIST_ID
+);
 
 // Set config for MailChimp API using env variables
 client.setConfig({
@@ -51,7 +56,6 @@ app.post("/", (req, res) => {
       response = await client.lists.addListMember(process.env.LIST_ID, data);
       res.sendFile(path.join(__dirname, "success.html"));
     } catch (e) {
-      console.log(response);
       res.sendFile(path.join(__dirname, "failure.html"));
     }
   };
